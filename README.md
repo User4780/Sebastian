@@ -18,8 +18,17 @@ Reparaturbedarf (notRepairedDamage) könnte den Preis beeinflussen, da Fahrzeuge
 Methodik:
 Verwendet werden kann eine Regressionsanalyse, um die Beziehungen zwischen den unabhängigen Variablen (Merkmale) und der abhängigen Variable (Preis) zu modellieren. Zudem können verschiedene Machine Learning-Modelle wie lineare Regression, Random Forest oder Gradient Boosting getestet werden, um die beste Vorhersagegenauigkeit zu erzielen.
 
+
 ## Datenaufbereitung:
 Es sollten fehlende oder inkonsistente Daten behandelt werden, um ein genaues Modell zu erstellen. Außerdem können kategoriale Variablen in numerische umgewandelt werden, um sie in den Modellen verwenden zu können.
 
 ## Auswertung:
 Die Leistung der Modelle sollte anhand von Metriken wie dem Mean Squared Error (MSE) oder dem R-squared-Wert bewertet werden. Zusätzlich kann eine Feature-Importance-Analyse durchgeführt werden, um die wichtigsten Merkmale für die Preisvorhersage zu identifizieren.
+
+## Regressionsmodell:
+### regression_model <- lm(price ~ powerPS, data = daten_sub)
+Der R-squared-Wert ist sehr klein (0.0003257), was darauf hinweist, dass die Leistung allein nur einen sehr geringen Anteil an der Variation des Fahrzeugpreises erklärt.
+
+
+
+
