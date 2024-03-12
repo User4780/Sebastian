@@ -26,7 +26,9 @@ Es sollten fehlende oder inkonsistente Daten behandelt werden, um ein genaues Mo
 Die Leistung der Modelle sollte anhand von Metriken wie dem Mean Squared Error (MSE) oder dem R-squared-Wert bewertet werden. Zusätzlich kann eine Feature-Importance-Analyse durchgeführt werden, um die wichtigsten Merkmale für die Preisvorhersage zu identifizieren.
 
 ## Regressionsmodell:
-### regression_model <- lm(price ~ powerPS, data = daten_sub)
+```
+regression_model <- lm(price ~ powerPS, data = daten_sub)
+```
 Der R-squared-Wert ist sehr klein (0.0003257), was darauf hinweist, dass die Leistung allein nur einen sehr geringen Anteil an der Variation des Fahrzeugpreises erklärt.
 
 
