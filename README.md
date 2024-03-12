@@ -30,5 +30,50 @@ Die Leistung der Modelle sollte anhand von Metriken wie dem Mean Squared Error (
 Der R-squared-Wert ist sehr klein (0.0003257), was darauf hinweist, dass die Leistung allein nur einen sehr geringen Anteil an der Variation des Fahrzeugpreises erklärt.
 
 
+''' 
+# Variante 1: Nur Leistung und Kilometer
+model_1 <- lm(price ~ powerPS + kilometer, data = daten_sub)
+
+# Variante 2: Leistung, Kilometer und unreparierter Schaden
+model_2 <- lm(price ~ powerPS + kilometer + notRepairedDamage, data = daten_sub)
+
+# Variante 3: Leistung, Kilometer, unreparierter Schaden und erste Ziffer der PLZ
+model_3 <- lm(price ~ powerPS + kilometer + notRepairedDamage + firstDigitOfPLZ, data = daten_sub)
+
+# Vergleiche die Modelle
+summary(model_1)
+summary(model_2)
+summary(model_3)
+
+'''
+
+Modell 1:
+
+Unabhängige Variablen: "powerPS" und "kilometer"
+Ergebnisse:
+Beide Variablen ("powerPS" und "kilometer") sind statistisch signifikant.
+Das Modell hat eine sehr geringe erklärte Varianz (R-squared: 0.0004572).
+F-Test zeigt, dass das Modell als Ganzes signifikant ist.
+Modell 2:
+
+Unabhängige Variablen: "powerPS", "kilometer" und "notRepairedDamage"
+Ergebnisse:
+"powerPS" und "kilometer" sind statistisch signifikant.
+"notRepairedDamage" ist nicht signifikant.
+Erklärte Varianz leicht verbessert (R-squared: 0.0004638).
+F-Test zeigt statistische Signifikanz.
+Modell 3:
+
+Unabhängige Variablen: "powerPS", "kilometer", "notRepairedDamage" und "firstDigitOfPLZ"
+Ergebnisse:
+"powerPS" und "kilometer" sind statistisch signifikant.
+"notRepairedDamage" und "firstDigitOfPLZ" sind nicht signifikant.
+Geringfügige Verbesserung der erklärten Varianz (R-squared: 0.0004647).
+F-Test zeigt statistische Signifikanz.
+Allgemeine Beobachtungen:
+
+Die Modelle haben eine sehr geringe erklärte Varianz, was darauf hindeutet, dass die gewählten Variablen den Fahrzeugpreis nur minimal erklären können.
+"notRepairedDamage" und "firstDigitOfPLZ" scheinen nicht signifikant mit dem Fahrzeugpreis zusammenzuhängen.
+Es könnte sinnvoll sein, weitere Variablen zu berücksichtigen oder die Daten genauer zu analysieren, um die Modellgenauigkeit zu verbessern.
 
 
