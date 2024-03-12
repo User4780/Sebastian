@@ -30,7 +30,7 @@ Die Leistung der Modelle sollte anhand von Metriken wie dem Mean Squared Error (
 Der R-squared-Wert ist sehr klein (0.0003257), was darauf hinweist, dass die Leistung allein nur einen sehr geringen Anteil an der Variation des Fahrzeugpreises erklärt.
 
 
-''' 
+```
 # Variante 1: Nur Leistung und Kilometer
 model_1 <- lm(price ~ powerPS + kilometer, data = daten_sub)
 
@@ -45,7 +45,7 @@ summary(model_1)
 summary(model_2)
 summary(model_3)
 
-'''
+```
 
 Modell 1:
 
