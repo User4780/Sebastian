@@ -73,9 +73,75 @@ Geringfügige Verbesserung der erklärten Varianz (R-squared: 0.0004647).
 F-Test zeigt statistische Signifikanz.
 Allgemeine Beobachtungen:
 
-# Zusammenfassung
+## Zusammenfassung
 Die Modelle haben eine sehr geringe erklärte Varianz, was darauf hindeutet, dass die gewählten Variablen den Fahrzeugpreis nur minimal erklären können.
 "notRepairedDamage" und "firstDigitOfPLZ" scheinen nicht signifikant mit dem Fahrzeugpreis zusammenzuhängen.
 Es könnte sinnvoll sein, weitere Variablen zu berücksichtigen oder die Daten genauer zu analysieren, um die Modellgenauigkeit zu verbessern.
+
+# Code
+```
+# Lade das caret Paket
+library(caret)
+library(glmnet)
+
+
+# Lese den Datensatz
+daten <- read.csv("C:\\Users\\ABGGS\\OneDrive - ADAC SE\\Desktop\\autos.csv")
+
+# Filtere den Datensatz
+daten <- subset(daten, offerType == "Angebot")
+daten <- subset(daten, powerPS > 10 & powerPS <= 800)
+daten <- subset(daten, price > 2500 & price <= 1000000)
+daten <- subset(daten, fuelType == "benzin" | fuelType == "diesel")
+daten$firstDigitOfPLZ <- as.numeric(substr(daten$postalCode, 1, 1))
+daten <- subset(daten, yearOfRegistration >= 1990)
+daten <- subset(daten, select = -c(dateCreated, name, postalCode, seller, monthOfRegistration, nrOfPictures))
+daten$notRepairedDamage <- ifelse(daten$notRepairedDamage %in% c("", "nein"), 0, 1)
+daten <- na.omit(daten)
+daten$dateCrawled <- as.Date(strptime(daten$dateCrawled, format="%Y-%m-%d %H:%M:%S"))
+daten$lastSeen <- as.Date(strptime(daten$lastSeen, format="%Y-%m-%d %H:%M:%S"))
+
+# Filtere nach ausgewählten Marken
+selected_brands <- c("porsche", "mercedes_benz", "bmw", "audi")
+daten_sub <- subset(daten, brand %in% selected_brands)
+daten_sub <- daten_sub[, c("price", "powerPS", "yearOfRegistration", "brand", "kilometer", "notRepairedDamage", "gearbox", "fuelType")]
+
+# Teile den Datensatz in Trainings- und Testdaten (80% Training, 20% Test)
+set.seed(123)
+index <- createDataPartition(daten_sub$price, p = 0.8, list = FALSE)
+train_data <- daten_sub[index, ]
+test_data <- daten_sub[-index, ]
+
+# Erstelle eine Matrix mit den unabhängigen Variablen für Training
+x_train <- model.matrix(price ~ . - 1, data = train_data)
+# Erstelle die abhängige Variable für Training
+y_train <- train_data$price
+
+# Erstelle eine Matrix mit den unabhängigen Variablen für Test
+x_test <- model.matrix(price ~ . - 1, data = test_data)
+# Erstelle die abhängige Variable für Test
+y_test <- test_data$price
+
+# Erstelle das Lasso-Modell für Training
+lasso_model <- cv.glmnet(x_train, y_train, alpha = 1)
+
+# Finde den besten Lambda-Wert
+best_lambda <- lasso_model$lambda.min 
+
+# Wende das Lasso-Modell auf die Testdaten an
+lasso_predictions <- predict(lasso_model, newx = x_test, s = best_lambda)
+
+
+# Bewertung des Modells (zum Beispiel: RMSE)
+rmse <- sqrt(mean((lasso_predictions - y_test)^2))
+print(paste("RMSE: ", rmse))
+
+# Extrahiere die Koeffizienten des Lasso-Modells
+lasso_coefficients <- coef(lasso_model, s = best_lambda)
+
+# Zeige die Koeffizienten an
+print(lasso_coefficients)
+
+```
 
 
