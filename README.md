@@ -175,6 +175,22 @@ notRepairedDamage  -3.052038e+03
 gearboxautomatik    .           
 gearboxmanuell      6.009724e+02
 fuelTypediesel      2.486132e+03
-> 
+>
+PowerPS: Der Koeffizient für PowerPS beträgt 81,463. Dies deutet darauf hin, dass eine Erhöhung der Leistung um ein PS zu einer Erhöhung des Fahrzeugpreises um etwa 81,46 Euro führt.
+
+YearOfRegistration (Erstzulassung): Der Koeffizient für das Jahr der Zulassung beträgt 584,08. Dies zeigt an, dass neuere Fahrzeuge  höhere Preise haben, was den Erwartungen entspricht.
+
+Marke (Brand): Die Koeffizienten für die verschiedenen Marken (Audi, BMW, Mercedes-Benz, Porsche) zeigen die geschätzten Preisunterschiede im Vergleich zu der Basismarke(Audi). 
+Porsche hat einen Koeffizienten von 21.925,42 € was bedeutet, dass Porsche-Fahrzeuge im Durchschnitt einen deutlich höheren Preis haben.
+Mercedes hat einen Koeffizienten von  346,81 €.
+BMW ist im Durchschnitt 251,00 € günstiger als ein Audi.
+
+Kilometer: Der Koeffizient für Kilometer beträgt -0,122. Das bedeutet das wenn pro Kilometer den das Auto mehr gefahren ist der Preis sich um durchschnittlich 12 ct verringert.
+
+NotRepairedDamage (nicht reparierter Schaden): Der Koeffizient für nicht reparierten Schaden beträgt -3.052,04. Dies deutet darauf hin, dass Fahrzeuge mit nicht reparierten Schäden tendenziell niedrigere Preise haben.
+
+Getriebe (Gearbox): Das manuelles Getriebe hat einen Koeffizienten von 600,97, was darauf hinweist, dass Fahrzeuge mit manuellem Getriebe im Durchschnitt einen höheren Preis haben als Automatik Getriebe.
+
+FuelType (Kraftstoffart): Diesel hat einen Koeffizienten von 2.486,13, was darauf hinweist, dass Fahrzeuge mit Dieselkraftstoff im Durchschnitt einen höheren Preis haben als Autos die mit Benzin laufen.
 
 ![image](https://github.com/User4780/cl500/assets/148768739/7cda745e-be66-4030-98e5-7eb73f059959)
