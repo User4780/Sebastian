@@ -194,3 +194,28 @@ Getriebe (Gearbox): Das manuelles Getriebe hat einen Koeffizienten von 600,97, w
 FuelType (Kraftstoffart): Diesel hat einen Koeffizienten von 2.486,13, was darauf hinweist, dass Fahrzeuge mit Dieselkraftstoff im Durchschnitt einen höheren Preis haben als Autos die mit Benzin laufen.
 
 ![image](https://github.com/User4780/cl500/assets/148768739/7cda745e-be66-4030-98e5-7eb73f059959)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Abgrezung zu den anderen Codes auf Github
+
+Analysemethoden: 
+Unser Code nutzt das Lasso-Verfahren zur Regressionsanalyset, die anderen Codes konzentrieren sich  auf explorative Datenanalyse, deskriptive Statistiken und Aggregationen, um Einblicke in den Datensatz zu gewinnen.
+
+Ziel und Verwendungszweck:
+Unser Code  entwickelt ein Vorhersagemodell , während die anderen Codes allgemeine Einblicke in den Datensatz gewinnen und Muster identifizieren wollen, ohne spezifische Vorhersagen zu machen.
+
+Bereinigung des Datensatz:
+Alle Codes bereinigen den Datensatz um falsche Werte wie Autos von 1600 aus den Bewertungen auszuschließen. Es gibt hier kleine Unterschiede die aber nicht weiter nennenswert sind.
+
+Hauptunterschied: Die Codes die in Kaggle bereitgestellt sind laufen alle über Python, dahingegen unserer über R Studio.
