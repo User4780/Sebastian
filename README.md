@@ -132,7 +132,7 @@ best_lambda <- lasso_model$lambda.min
 lasso_predictions <- predict(lasso_model, newx = x_test, s = best_lambda)
 
 
-# Bewertung des Modells (zum Beispiel: RMSE)
+# Bewertung des Modells 
 rmse <- sqrt(mean((lasso_predictions - y_test)^2))
 print(paste("RMSE: ", rmse))
 
@@ -143,5 +143,21 @@ lasso_coefficients <- coef(lasso_model, s = best_lambda)
 print(lasso_coefficients)
 
 ```
-
+# Ergebnis
+RMSE:  16309.3680865425"
+12 x 1 sparse Matrix of class "dgCMatrix"
+                              s1
+(Intercept)        -1.160795e+06
+powerPS             8.146299e+01
+yearOfRegistration  5.840779e+02
+brandaudi           .           
+brandbmw           -2.510059e+02
+brandmercedes_benz  3.468114e+02
+brandporsche        2.192542e+04
+kilometer          -1.222966e-01
+notRepairedDamage  -3.052038e+03
+gearboxautomatik    .           
+gearboxmanuell      6.009724e+02
+fuelTypediesel      2.486132e+03
+> 
 
