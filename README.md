@@ -142,6 +142,22 @@ lasso_coefficients <- coef(lasso_model, s = best_lambda)
 # Zeige die Koeffizienten an
 print(lasso_coefficients)
 
+
+set.seed(123)  
+random_indices <- sample(length(y_test), 100)
+random_y_test <- y_test[random_indices]
+random_lasso_predictions <- lasso_predictions[random_indices]
+
+plot(random_y_test, random_lasso_predictions, 
+     xlab = "Tatsächliche Preise", ylab = "Vorhergesagte Preise",
+     main = "Vergleich von zufälligen tatsächlichen und vorhergesagten Preisen",
+     xlim = c(min(y_test), max(y_test)), ylim = c(min(lasso_predictions), max(lasso_predictions)))
+
+abline(a = 0, b = 1, col = "red")
+
+
+
+
 ```
 # Ergebnis
 RMSE:  16309.3680865425"
