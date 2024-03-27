@@ -199,6 +199,59 @@ FuelType (Kraftstoffart): Diesel hat einen Koeffizienten von 2.486,13, was darau
 
 
 
+```
+ Finde den besten Lambda-Wert
+best_lambda <- lasso_model$lambda.min 
+
+# Wende das Lasso-Modell auf die Testdaten an
+lasso_predictions <- predict(lasso_model, newx = x_test, s = best_lambda)
+
+# Bewertung des Modells 
+rmse <- sqrt(mean((lasso_predictions - y_test)^2))
+print(paste("RMSE: ", rmse))
+
+# Kreuzvalidierung zur Berechnung des durchschnittlichen Testfehlers
+cv_errors <- cv.glmnet(x_train, y_train, alpha = 1, type.measure = "mse")
+average_cv_error <- cv_errors$cvm[which.min(cv_errors$cvm)]
+
+print(paste("Durchschnittlicher Testfehler (Kreuzvalidierung): ", average_cv_error))
+
+# Trainingsfehler
+average_train_error <- mean((predict(lasso_model, newx = x_train, s = best_lambda) - y_train)^2)
+
+# Bias berechnen
+bias <- mean((lasso_predictions - mean(y_test))^2)
+
+# Varianz berechnen
+lasso_variance <- mean((lasso_predictions - mean(lasso_predictions))^2)
+
+# Drucke den Bias-Variance-Trade-Off
+print(paste("Bias: ", bias))
+print(paste("Varianz: ", lasso_variance))
+print(paste("Durchschnittlicher Trainingsfehler: ", average_train_error))
+
+# Erstelle ein Streudiagramm für die Vorhersagen
+plot(y_test, lasso_predictions, 
+     xlab = "Tatsächliche Preise", ylab = "Vorhergesagte Preise",
+     main = "Vergleich von tatsächlichen und vorhergesagten Preisen",
+     xlim = c(min(y_test), max(y_test)), ylim = c(min(lasso_predictions), max(lasso_predictions)))
+
+abline(a = 0, b = 1, col = "red")
+
+
+```
+# Testfehler verbessern
+Trainingsdatenaufteilung auf 99 Prozent zu 1 erhöhen
+Vergleichen wir die beiden Testfehler:
+
+Im ersten Fall beträgt der durchschnittliche Testfehler (Kreuzvalidierung) etwa 47,74 Millionen, während der RMSE (Root Mean Squared Error) ungefähr 16.309 beträgt.
+
+Im zweiten Fall beträgt der durchschnittliche Testfehler (Kreuzvalidierung) etwa 33.273.206,44, während der RMSE ungefähr 5.867,41 beträgt.
+
+Da niedrigere RMSE-Werte und durchschnittliche Testfehler wünschenswert sind, ist das zweite Modell mit einem durchschnittlichen Testfehler von 33,27 Millionen und einem RMSE von 5.867,41 als besser zu betrachten. Dies deutet darauf hin, dass das zweite Modell eine bessere Vorhersagegenauigkeit aufweist als das erste Modell.
+
+
+
 
 
 
