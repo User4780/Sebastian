@@ -256,6 +256,7 @@ Da niedrigere RMSE-Werte und durchschnittliche Testfehler wünschenswert sind, i
 
 
 
+![image](https://github.com/User4780/cl500/assets/148768739/86fdf9d4-11ca-4697-8ce3-d2de4dedfc0d)
 
 
 
